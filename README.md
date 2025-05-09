@@ -74,7 +74,7 @@ python decoder.py
 ### The resulting .asm file will appear under ./output/assemblies/.
 
 ## 📜 License
-### Apache 2.0, patent protected, See LICENSE for details.
+### FirmwareDecoder Academic License, patent protected, See LICENSE for details.
 
 ## 🤝 Contributions
 Open to pull requests, suggestions, and improvements from the community or academia.
