@@ -1,3 +1,15 @@
+'''
+FirmwareDecoder Academic License
+
+This software is licensed for academic use only.
+
+Commercial use (including in proprietary, closed-source, or monetized systems) is strictly prohibited without a separate license agreement.
+
+If you wish to use this software for commercial purposes, please contact the author at: jank.jong@gmail.com
+
+© 2025 [Jank Jong]. All rights reserved.
+'''
+
 import re
 import shutil
 import os
