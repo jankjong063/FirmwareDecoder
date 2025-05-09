@@ -47,12 +47,12 @@ C:\Program Files (x86)\Arm GNU Toolchain arm-none-eabi\13.3 rel1\bin\arm-none-ea
 │   └── firmwares/          # Place ELF firmware files here
 ├── output/
 │   └── assemblies/         # Disassembled output files saved here
-├── FirmwareDecoder_main.py # Main script
+├── decoder.py # Main script
 ├── README.md
 ```
 
 ### 🔧 Configuration (Tested with windows environment only!!!)
-In FirmwareDecoder_main.py, update these paths to match your local environment:
+In decoder.py, update these paths to match your local environment:
 
 ```python
 avr_objdump_path = r"C:\Users\<username>\AppData\Local\Arduino15\packages\arduino\tools\avr-gcc\7.3.0-atmel3.6.1-arduino7\bin\avr-objdump.exe"
@@ -69,7 +69,7 @@ OUTPUT_ASSEMBLY_DIR = "./output/assemblies/"
 ### Make sure your ELF firmware (e.g., example.elf) is placed under ./input/firmwares/.
 ### Run the decoder:
 ```bash
-python FirmwareDecoder_main.py
+python decoder.py
 ```
 ### The resulting .asm file will appear under ./output/assemblies/.
 
