@@ -16,13 +16,14 @@ import os
 import json
 import requests
 import subprocess
+import py7zr
 from elftools.elf.elffile import ELFFile
 
-avr_objdump_path = r"C:\Users\<your name>\AppData\Local\Arduino15\packages\arduino\tools\avr-gcc\7.3.0-atmel3.6.1-arduino7\bin\avr-objdump.exe"
+avr_objdump_path = r"C:\Users\88691\AppData\Local\Arduino15\packages\arduino\tools\avr-gcc\7.3.0-atmel3.6.1-arduino7\bin\avr-objdump.exe"
 arm_objdump_path = r"C:\Program Files (x86)\Arm GNU Toolchain arm-none-eabi\13.3 rel1\bin\arm-none-eabi-objdump.exe"
 
-INPUT_FIRMWARES_DIR = "./input/firmwares/"
-OUTPUT_ASSEMBLY_DIR = "./output/assemblies/"
+INPUT_FIRMWARES_DIR = "./input/firmwares"
+OUTPUT_ASSEMBLY_DIR = "./output/assemblies"
 
 class ElfFileProcessor:
     def __init__(self, avr_objdump_path: str, arm_objdump_path: str):
@@ -69,9 +70,22 @@ class ElfFileProcessor:
 
 def main():
     processor = ElfFileProcessor(avr_objdump_path, arm_objdump_path)
-    input_firmware_file = INPUT_FIRMWARES_DIR + "example.elf"
-    output_assembly_file = OUTPUT_ASSEMBLY_DIR + "example.asm"
+
+    input_firmware_file = os.path.join(INPUT_FIRMWARES_DIR, "example.elf")
+    output_assembly_file = os.path.join(OUTPUT_ASSEMBLY_DIR, "example.asm")
+    output_archive_file = os.path.join(OUTPUT_ASSEMBLY_DIR, "example.7z")
+
+    # Step 1: Disassemble ELF to ASM
     disasm_file = processor.process_elf_file(input_firmware_file, output_assembly_file)
+
+    # Step 2: Compress ASM file to 7z
+    with py7zr.SevenZipFile(output_archive_file, 'w') as archive:
+        archive.write(output_assembly_file, arcname="example.asm")
+
+    # Step 3: Delete the original .asm file
+    os.remove(output_assembly_file)
+
+    print(f"Assembly file compressed and cleaned up: {output_archive_file}")
 
 if __name__ == "__main__":
     main()
