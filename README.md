@@ -20,7 +20,7 @@ A Python utility to disassemble ELF firmware files into readable assembly, suppo
 Install via pip:
 
 ```bash
-pip install pyelftools
+pip install pyelftools py7zr
 ```
 
 ## Required Toolchains
